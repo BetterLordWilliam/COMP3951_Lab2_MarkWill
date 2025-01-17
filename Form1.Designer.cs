@@ -81,6 +81,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(377, 26);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "0";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tableLayoutPanel1
@@ -123,6 +124,7 @@
             this.buttonKeyPosNeg.TabIndex = 11;
             this.buttonKeyPosNeg.Text = "+/-";
             this.buttonKeyPosNeg.UseVisualStyleBackColor = false;
+            this.buttonKeyPosNeg.Click += new System.EventHandler(this.buttonPlusMinusSign_Click);
             // 
             // buttonKeyDecimal
             // 
@@ -134,6 +136,7 @@
             this.buttonKeyDecimal.TabIndex = 10;
             this.buttonKeyDecimal.Text = ".";
             this.buttonKeyDecimal.UseVisualStyleBackColor = false;
+            this.buttonKeyDecimal.Click += new System.EventHandler(this.buttonDecimal_Click);
             // 
             // buttonKey0
             // 
@@ -145,6 +148,7 @@
             this.buttonKey0.TabIndex = 9;
             this.buttonKey0.Text = "0";
             this.buttonKey0.UseVisualStyleBackColor = false;
+            this.buttonKey0.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey3
             // 
@@ -156,6 +160,7 @@
             this.buttonKey3.TabIndex = 8;
             this.buttonKey3.Text = "3";
             this.buttonKey3.UseVisualStyleBackColor = false;
+            this.buttonKey3.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey2
             // 
@@ -167,6 +172,7 @@
             this.buttonKey2.TabIndex = 7;
             this.buttonKey2.Text = "2";
             this.buttonKey2.UseVisualStyleBackColor = false;
+            this.buttonKey2.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey1
             // 
@@ -178,6 +184,7 @@
             this.buttonKey1.TabIndex = 6;
             this.buttonKey1.Text = "1";
             this.buttonKey1.UseVisualStyleBackColor = false;
+            this.buttonKey1.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey6
             // 
@@ -189,6 +196,7 @@
             this.buttonKey6.TabIndex = 5;
             this.buttonKey6.Text = "6";
             this.buttonKey6.UseVisualStyleBackColor = false;
+            this.buttonKey6.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey5
             // 
@@ -200,6 +208,7 @@
             this.buttonKey5.TabIndex = 4;
             this.buttonKey5.Text = "5";
             this.buttonKey5.UseVisualStyleBackColor = false;
+            this.buttonKey5.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey4
             // 
@@ -211,6 +220,7 @@
             this.buttonKey4.TabIndex = 3;
             this.buttonKey4.Text = "4";
             this.buttonKey4.UseVisualStyleBackColor = false;
+            this.buttonKey4.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey9
             // 
@@ -222,6 +232,7 @@
             this.buttonKey9.TabIndex = 2;
             this.buttonKey9.Text = "9";
             this.buttonKey9.UseVisualStyleBackColor = false;
+            this.buttonKey9.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey8
             // 
@@ -233,6 +244,7 @@
             this.buttonKey8.TabIndex = 1;
             this.buttonKey8.Text = "8";
             this.buttonKey8.UseVisualStyleBackColor = false;
+            this.buttonKey8.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // buttonKey7
             // 
@@ -244,6 +256,7 @@
             this.buttonKey7.TabIndex = 0;
             this.buttonKey7.Text = "7";
             this.buttonKey7.UseVisualStyleBackColor = false;
+            this.buttonKey7.Click += new System.EventHandler(this.buttonDigit_Click);
             // 
             // offOnButton
             // 
@@ -507,6 +520,7 @@
             this.buttonKeyBackspace.TabIndex = 9;
             this.buttonKeyBackspace.Text = "<-";
             this.buttonKeyBackspace.UseVisualStyleBackColor = false;
+            this.buttonKeyBackspace.Click += new System.EventHandler(buttonBackspace_Click);
             // 
             // buttonKeyClearAll
             // 
@@ -519,6 +533,7 @@
             this.buttonKeyClearAll.TabIndex = 8;
             this.buttonKeyClearAll.Text = "C";
             this.buttonKeyClearAll.UseVisualStyleBackColor = false;
+            this.buttonKeyClearAll.Click += new System.EventHandler(buttonClearAll_Click);
             // 
             // buttonKeyClearThis
             // 
@@ -557,6 +572,11 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+        }
+
+        private void buttonKeyClearAll_Click(object sender, System.EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
