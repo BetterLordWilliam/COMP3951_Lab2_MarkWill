@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonKeyPosNeg = new System.Windows.Forms.Button();
@@ -73,13 +74,14 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Enabled = false;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(24, 22);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(377, 32);
+            this.textBox1.Size = new System.Drawing.Size(377, 26);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tableLayoutPanel1
             // 
@@ -99,6 +101,7 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonKey9, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonKey8, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonKey7, 0, 0);
+            this.tableLayoutPanel1.Enabled = false;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(14, 141);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -250,8 +253,9 @@
             this.offOnButton.Name = "offOnButton";
             this.offOnButton.Size = new System.Drawing.Size(62, 35);
             this.offOnButton.TabIndex = 3;
-            this.offOnButton.Text = "OFF";
+            this.offOnButton.Text = "ON";
             this.offOnButton.UseVisualStyleBackColor = false;
+            this.offOnButton.Click += new System.EventHandler(this.offOnButton_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -264,6 +268,7 @@
             this.tableLayoutPanel2.Controls.Add(this.buttonKeyMemStore, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonKeyMemRecall, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonKeyMemClear, 0, 0);
+            this.tableLayoutPanel2.Enabled = false;
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(118, 68);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
@@ -336,6 +341,7 @@
             this.tableLayoutPanel3.Controls.Add(this.buttonKeyMultiply, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.buttonKeySqrt, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.buttonKeyDivide, 0, 0);
+            this.tableLayoutPanel3.Enabled = false;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(208, 141);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -466,6 +472,7 @@
             this.tableLayoutPanel4.Controls.Add(this.buttonKeyBackspace, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.buttonKeyClearAll, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.buttonKeyClearThis, 0, 0);
+            this.tableLayoutPanel4.Enabled = false;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(350, 141);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -536,9 +543,13 @@
             this.Controls.Add(this.offOnButton);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "The Coolest Calculator";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
