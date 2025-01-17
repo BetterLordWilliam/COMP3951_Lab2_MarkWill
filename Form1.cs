@@ -12,7 +12,7 @@ namespace COMP3951_Lab2_MarkWill
 {
     public partial class Form1 : Form
     {
-
+        private Calculator calculator = new Calculator();
         private bool isOn = false;
         private bool isNegativeSigned = false;
         public Form1()
@@ -107,6 +107,18 @@ namespace COMP3951_Lab2_MarkWill
             }
         }
 
-
+        /// <summary>
+        /// Plus button of the calculator clicked (should do these in one group perchance).
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonPlus_Click(object sender, EventArgs e)
+        {
+            // There are things in the textbox
+            if (textBox1.Text.Length > 1)
+            {
+                
+            }
+        }
     }
 }
