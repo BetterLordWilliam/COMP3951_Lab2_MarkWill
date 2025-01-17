@@ -11,40 +11,81 @@ namespace COMP3951_Lab2_MarkWill
 {
     internal class Calculator
     {
-        /// <summary>
-        /// Store information about a calculation.
-        /// 
-        /// Idea is to use this in order to computer order of operations down the line.
-        /// </summary>
-        struct Calculation
-        {
-            /// <summary>
-            /// Construct a Calculation object.
-            /// </summary>
-            /// <param name="calculationLiteral"></param>
-            /// <param name="calculationValue"></param>
-            public Calculation(string calculationLiteral, float calculationValue)
-            {
-                CalculationLiteral = calculationLiteral;
-                CalculationValue = calculationValue;
-            }
-
-            public string CalculationLiteral { get; }
-            public float CalculationValue { get; set; }
-        };
-
         public float PreviousCalculation {  get; set; }
-        public float Operand1 { get; set; }
-        public float Operand2 { get; set; }
+        private Operand Calculation;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public Calculator()
+        {
+            Calculation = new Operand();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public void MemoryClear()
         {
             PreviousCalculation = 0;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="addValue"></param>
         public void MemoryAddStore(float addValue)
         {
             PreviousCalculation += addValue;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public void CreateRightOperand(float value)
+        {
+            unsafe
+            {
+                Calculation.rightOperand = &value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public void CreateLeftOperand(float value)
+        {
+            unsafe
+            {
+                Calculation.leftOperand = &value;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operationLiteral"></param>
+        public void CreateOperation(string operationLiteral)
+        {
+            unsafe
+            {
+                Calculation.operation = &operationLiteral;
+            }
+        }
+
+        public float Compute()
+        {
+            return 1.2f;
+        }
     }
+
+
+    unsafe struct Operand
+    {
+        public void* leftOperand;
+        public void* rightOperand;
+        public void* operation;
+    };
 }
