@@ -75,7 +75,7 @@ namespace COMP3951_Lab2_MarkWill
 
             if (isNegativeSigned)
             {
-                if (!this.textBox1.Text.StartsWith("0"))
+                if (this.textBox1.Text != "0")
                 {
                     this.textBox1.Text = this.textBox1.Text.Insert(0, "-");
                 }
@@ -94,6 +94,7 @@ namespace COMP3951_Lab2_MarkWill
             textBox1.Text = "0";
         }
 
+        //TODO: Fix bug where i need to backspace the "-" with no digits in order to get back to "0" - MP
         private void buttonBackspace_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length > 1)
