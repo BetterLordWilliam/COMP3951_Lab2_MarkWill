@@ -65,6 +65,7 @@
             this.buttonKeyBackspace = new System.Windows.Forms.Button();
             this.buttonKeyClearAll = new System.Windows.Forms.Button();
             this.buttonKeyClearThis = new System.Windows.Forms.Button();
+            this.resultsBox = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -76,10 +77,10 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(24, 22);
+            this.textBox1.Location = new System.Drawing.Point(118, 22);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(377, 26);
+            this.textBox1.Size = new System.Drawing.Size(283, 26);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "0";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -302,6 +303,7 @@
             this.buttonKeyMemAdd.TabIndex = 4;
             this.buttonKeyMemAdd.Text = "M+";
             this.buttonKeyMemAdd.UseVisualStyleBackColor = false;
+            this.buttonKeyMemAdd.Click += new System.EventHandler(this.buttonKeyMemAdd_Click);
             // 
             // buttonKeyMemStore
             // 
@@ -314,6 +316,7 @@
             this.buttonKeyMemStore.TabIndex = 3;
             this.buttonKeyMemStore.Text = "MS";
             this.buttonKeyMemStore.UseVisualStyleBackColor = false;
+            this.buttonKeyMemStore.Click += new System.EventHandler(this.buttonKeyMemStore_Click);
             // 
             // buttonKeyMemRecall
             // 
@@ -326,6 +329,7 @@
             this.buttonKeyMemRecall.TabIndex = 2;
             this.buttonKeyMemRecall.Text = "MR";
             this.buttonKeyMemRecall.UseVisualStyleBackColor = false;
+            this.buttonKeyMemRecall.Click += new System.EventHandler(this.buttonKeyMemRecall_Click);
             // 
             // buttonKeyMemClear
             // 
@@ -338,6 +342,7 @@
             this.buttonKeyMemClear.TabIndex = 1;
             this.buttonKeyMemClear.Text = "MC";
             this.buttonKeyMemClear.UseVisualStyleBackColor = false;
+            this.buttonKeyMemClear.Click += new System.EventHandler(this.buttonKeyMemClear_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -377,6 +382,7 @@
             this.buttonKeyClosedBracket.TabIndex = 11;
             this.buttonKeyClosedBracket.Text = ")";
             this.buttonKeyClosedBracket.UseVisualStyleBackColor = false;
+            this.buttonKeyClosedBracket.Click += new System.EventHandler(this.buttonCloseBracket_Click);
             // 
             // buttonKeyOpenBracket
             // 
@@ -388,6 +394,7 @@
             this.buttonKeyOpenBracket.TabIndex = 10;
             this.buttonKeyOpenBracket.Text = "(";
             this.buttonKeyOpenBracket.UseVisualStyleBackColor = false;
+            this.buttonKeyOpenBracket.Click += new System.EventHandler(this.buttonOpenBracket_Click);
             // 
             // buttonKeyPowerOf2
             // 
@@ -399,6 +406,7 @@
             this.buttonKeyPowerOf2.TabIndex = 9;
             this.buttonKeyPowerOf2.Text = "x^2";
             this.buttonKeyPowerOf2.UseVisualStyleBackColor = false;
+            this.buttonKeyPowerOf2.Click += new System.EventHandler(this.buttonSpecialOperation_Click);
             // 
             // buttonKeyAdd
             // 
@@ -410,6 +418,7 @@
             this.buttonKeyAdd.TabIndex = 8;
             this.buttonKeyAdd.Text = "+";
             this.buttonKeyAdd.UseVisualStyleBackColor = false;
+            this.buttonKeyAdd.Click += new System.EventHandler(this.buttonPlus_Click);
             // 
             // buttonKeyReciprocal
             // 
@@ -421,6 +430,7 @@
             this.buttonKeyReciprocal.TabIndex = 7;
             this.buttonKeyReciprocal.Text = "1/x";
             this.buttonKeyReciprocal.UseVisualStyleBackColor = false;
+            this.buttonKeyReciprocal.Click += new System.EventHandler(this.buttonSpecialOperation_Click);
             // 
             // buttonKeySubtract
             // 
@@ -432,6 +442,7 @@
             this.buttonKeySubtract.TabIndex = 6;
             this.buttonKeySubtract.Text = "-";
             this.buttonKeySubtract.UseVisualStyleBackColor = false;
+            this.buttonKeySubtract.Click += new System.EventHandler(this.buttonPlus_Click);
             // 
             // buttonKeyModulo
             // 
@@ -443,6 +454,7 @@
             this.buttonKeyModulo.TabIndex = 5;
             this.buttonKeyModulo.Text = "%";
             this.buttonKeyModulo.UseVisualStyleBackColor = false;
+            this.buttonKeyModulo.Click += new System.EventHandler(this.buttonPlus_Click);
             // 
             // buttonKeyMultiply
             // 
@@ -454,6 +466,7 @@
             this.buttonKeyMultiply.TabIndex = 4;
             this.buttonKeyMultiply.Text = "*";
             this.buttonKeyMultiply.UseVisualStyleBackColor = false;
+            this.buttonKeyMultiply.Click += new System.EventHandler(this.buttonPlus_Click);
             // 
             // buttonKeySqrt
             // 
@@ -465,6 +478,7 @@
             this.buttonKeySqrt.TabIndex = 3;
             this.buttonKeySqrt.Text = "sqrt";
             this.buttonKeySqrt.UseVisualStyleBackColor = false;
+            this.buttonKeySqrt.Click += new System.EventHandler(this.buttonSpecialOperation_Click);
             // 
             // buttonKeyDivide
             // 
@@ -476,6 +490,7 @@
             this.buttonKeyDivide.TabIndex = 2;
             this.buttonKeyDivide.Text = "/";
             this.buttonKeyDivide.UseVisualStyleBackColor = false;
+            this.buttonKeyDivide.Click += new System.EventHandler(this.buttonPlus_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -508,6 +523,7 @@
             this.buttonKeyCalculate.TabIndex = 10;
             this.buttonKeyCalculate.Text = "=";
             this.buttonKeyCalculate.UseVisualStyleBackColor = false;
+            this.buttonKeyCalculate.Click += new System.EventHandler(this.buttonKeyCalculate_Click);
             // 
             // buttonKeyBackspace
             // 
@@ -520,7 +536,7 @@
             this.buttonKeyBackspace.TabIndex = 9;
             this.buttonKeyBackspace.Text = "<-";
             this.buttonKeyBackspace.UseVisualStyleBackColor = false;
-            this.buttonKeyBackspace.Click += new System.EventHandler(buttonBackspace_Click);
+            this.buttonKeyBackspace.Click += new System.EventHandler(this.buttonBackspace_Click);
             // 
             // buttonKeyClearAll
             // 
@@ -533,7 +549,7 @@
             this.buttonKeyClearAll.TabIndex = 8;
             this.buttonKeyClearAll.Text = "C";
             this.buttonKeyClearAll.UseVisualStyleBackColor = false;
-            this.buttonKeyClearAll.Click += new System.EventHandler(buttonClearAll_Click);
+            this.buttonKeyClearAll.Click += new System.EventHandler(this.buttonClearAll_Click);
             // 
             // buttonKeyClearThis
             // 
@@ -547,11 +563,20 @@
             this.buttonKeyClearThis.Text = "CE";
             this.buttonKeyClearThis.UseVisualStyleBackColor = false;
             // 
+            // resultsBox
+            // 
+            this.resultsBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.resultsBox.Location = new System.Drawing.Point(17, 22);
+            this.resultsBox.Name = "resultsBox";
+            this.resultsBox.Size = new System.Drawing.Size(96, 26);
+            this.resultsBox.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(424, 418);
+            this.Controls.Add(this.resultsBox);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -616,6 +641,7 @@
         private System.Windows.Forms.Button buttonKeyClearThis;
         private System.Windows.Forms.Button buttonKeyOpenBracket;
         private System.Windows.Forms.Button buttonKeyClosedBracket;
+        private System.Windows.Forms.Label resultsBox;
     }
 }
 

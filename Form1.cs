@@ -15,6 +15,8 @@ namespace COMP3951_Lab2_MarkWill
         private Calculator calculator = new Calculator();
         private bool isOn = false;
         private bool isNegativeSigned = false;
+        private bool containsResults = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -91,13 +93,13 @@ namespace COMP3951_Lab2_MarkWill
 
         private void buttonClearAll_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "0";
+            textBox1.Text = "";
         }
 
         //TODO: Fix bug where i need to backspace the "-" with no digits in order to get back to "0" - MP
         private void buttonBackspace_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length > 1)
+            if (textBox1.Text.Length >= 1)
             {
                 this.textBox1.Text = this.textBox1.Text.Remove(textBox1.Text.Length - 1, 1);
             }
@@ -117,8 +119,115 @@ namespace COMP3951_Lab2_MarkWill
             // There are things in the textbox
             if (textBox1.Text.Length > 1)
             {
-                
+                // Key here is to be putting spaces in front and behind
+                // Use spaces as a delimeter for parsing the equation string
+                textBox1.Text += $" {((Button)sender).Text} ";
             }
+        }
+
+        /// <summary>
+        /// Event handler for open bracket buttons.
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonOpenBracket_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += $"{((Button)sender).Text} ";
+        }
+
+        /// <summary>
+        /// Event handler for close bracket button.
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCloseBracket_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += $" {((Button)sender).Text}";
+        }
+
+        private void buttonSpecialOperation_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length >= 1)
+            {
+                try
+                {
+                    Console.WriteLine(((Button)sender).Text + " " + textBox1.Text);
+                    float res = calculator.SpecialCalculate(((Button)sender).Text, textBox1.Text);
+                    textBox1.Text = res.ToString();
+                    containsResults = true;
+                }
+                catch (ArgumentException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Calculate, initiates backed calculator logic.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonKeyCalculate_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length >= 1)
+            {
+                float res = calculator.Calculate(textBox1.Text);
+                textBox1.Text = res.ToString();
+                containsResults = true;
+            }
+        }
+
+        private void buttonKeyMemAdd_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length >= 1)
+            {
+                try
+                {
+                    // Evaluate expression
+                    float res = calculator.Calculate(textBox1.Text);
+                    // Store in memory
+                    calculator.MemoryAddStore(res);
+                    textBox1.Text = res.ToString();
+                    containsResults = true;
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void buttonKeyMemStore_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length >= 1)
+            {
+                try
+                {
+                    // Evaluate expression
+                    float res = calculator.Calculate(textBox1.Text);
+                    // Store in memory
+                    calculator.MemoryStore = res;
+                    textBox1.Text = res.ToString();
+                    containsResults = true;
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private void buttonKeyMemRecall_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = calculator.MemoryStore.ToString();
+        }
+
+        private void buttonKeyMemClear_Click(object sender, EventArgs e)
+        {
+            calculator.MemoryStore = 0;
         }
     }
 }
