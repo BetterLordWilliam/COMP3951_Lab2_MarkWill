@@ -128,7 +128,7 @@
             this.buttonKeyPosNeg.TabIndex = 11;
             this.buttonKeyPosNeg.Text = "+/-";
             this.buttonKeyPosNeg.UseVisualStyleBackColor = false;
-            this.buttonKeyPosNeg.Click += new System.EventHandler(this.buttonPlusMinusSign_Click);
+            this.buttonKeyPosNeg.Click += new System.EventHandler(this.buttonSpecialOperation_Click);
             // 
             // buttonKeyDecimal
             // 

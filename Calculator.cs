@@ -28,7 +28,8 @@ namespace COMP3951_Lab2_MarkWill
         {
             { "1/x", (num) => 1/num },
             { "x^2", (num) => num * num },
-            { "sqrt", (num) => (float) Math.Sqrt(num) }
+            { "sqrt", (num) => (float) Math.Sqrt(num) },
+            { "+/-", (num) => -1 * num}
         };
 
         // Operator prescidence dictionary
