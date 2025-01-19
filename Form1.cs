@@ -206,6 +206,7 @@ namespace COMP3951_Lab2_MarkWill
 
         private void buttonKeyMemRecall_Click(object sender, EventArgs e)
         {
+            textBox1.Text = "";
             textBox1.Text += calculator.MemoryStore.ToString();
         }
 
