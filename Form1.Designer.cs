@@ -64,24 +64,27 @@
             this.buttonKeyCalculate = new System.Windows.Forms.Button();
             this.buttonKeyBackspace = new System.Windows.Forms.Button();
             this.buttonKeyClearAll = new System.Windows.Forms.Button();
-            this.buttonKeyClearThis = new System.Windows.Forms.Button();
-            this.resultsBox = new System.Windows.Forms.Label();
+            this.buttonKeyClearEntry = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1
             // 
+            this.textBox1.AcceptsReturn = true;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(118, 22);
+            this.textBox1.Location = new System.Drawing.Point(14, 22);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(283, 26);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(400, 26);
             this.textBox1.TabIndex = 1;
+            this.textBox1.TabStop = false;
             this.textBox1.Text = "0";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -418,7 +421,7 @@
             this.buttonKeyAdd.TabIndex = 8;
             this.buttonKeyAdd.Text = "+";
             this.buttonKeyAdd.UseVisualStyleBackColor = false;
-            this.buttonKeyAdd.Click += new System.EventHandler(this.buttonPlus_Click);
+            this.buttonKeyAdd.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // buttonKeyReciprocal
             // 
@@ -442,7 +445,7 @@
             this.buttonKeySubtract.TabIndex = 6;
             this.buttonKeySubtract.Text = "-";
             this.buttonKeySubtract.UseVisualStyleBackColor = false;
-            this.buttonKeySubtract.Click += new System.EventHandler(this.buttonPlus_Click);
+            this.buttonKeySubtract.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // buttonKeyModulo
             // 
@@ -454,7 +457,7 @@
             this.buttonKeyModulo.TabIndex = 5;
             this.buttonKeyModulo.Text = "%";
             this.buttonKeyModulo.UseVisualStyleBackColor = false;
-            this.buttonKeyModulo.Click += new System.EventHandler(this.buttonPlus_Click);
+            this.buttonKeyModulo.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // buttonKeyMultiply
             // 
@@ -466,7 +469,7 @@
             this.buttonKeyMultiply.TabIndex = 4;
             this.buttonKeyMultiply.Text = "*";
             this.buttonKeyMultiply.UseVisualStyleBackColor = false;
-            this.buttonKeyMultiply.Click += new System.EventHandler(this.buttonPlus_Click);
+            this.buttonKeyMultiply.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // buttonKeySqrt
             // 
@@ -490,7 +493,7 @@
             this.buttonKeyDivide.TabIndex = 2;
             this.buttonKeyDivide.Text = "/";
             this.buttonKeyDivide.UseVisualStyleBackColor = false;
-            this.buttonKeyDivide.Click += new System.EventHandler(this.buttonPlus_Click);
+            this.buttonKeyDivide.Click += new System.EventHandler(this.buttonOperation_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -499,7 +502,7 @@
             this.tableLayoutPanel4.Controls.Add(this.buttonKeyCalculate, 0, 3);
             this.tableLayoutPanel4.Controls.Add(this.buttonKeyBackspace, 0, 2);
             this.tableLayoutPanel4.Controls.Add(this.buttonKeyClearAll, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.buttonKeyClearThis, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.buttonKeyClearEntry, 0, 0);
             this.tableLayoutPanel4.Enabled = false;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(350, 141);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
@@ -551,32 +554,36 @@
             this.buttonKeyClearAll.UseVisualStyleBackColor = false;
             this.buttonKeyClearAll.Click += new System.EventHandler(this.buttonClearAll_Click);
             // 
-            // buttonKeyClearThis
+            // buttonKeyClearEntry
             // 
-            this.buttonKeyClearThis.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.buttonKeyClearThis.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonKeyClearThis.ForeColor = System.Drawing.Color.Red;
-            this.buttonKeyClearThis.Location = new System.Drawing.Point(3, 3);
-            this.buttonKeyClearThis.Name = "buttonKeyClearThis";
-            this.buttonKeyClearThis.Size = new System.Drawing.Size(56, 61);
-            this.buttonKeyClearThis.TabIndex = 7;
-            this.buttonKeyClearThis.Text = "CE";
-            this.buttonKeyClearThis.UseVisualStyleBackColor = false;
+            this.buttonKeyClearEntry.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.buttonKeyClearEntry.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonKeyClearEntry.ForeColor = System.Drawing.Color.Red;
+            this.buttonKeyClearEntry.Location = new System.Drawing.Point(3, 3);
+            this.buttonKeyClearEntry.Name = "buttonKeyClearEntry";
+            this.buttonKeyClearEntry.Size = new System.Drawing.Size(56, 61);
+            this.buttonKeyClearEntry.TabIndex = 7;
+            this.buttonKeyClearEntry.Text = "CE";
+            this.buttonKeyClearEntry.UseVisualStyleBackColor = false;
+            this.buttonKeyClearEntry.Click += new System.EventHandler(this.buttonKeyClearEntry_Click);
             // 
-            // resultsBox
+            // pictureBox1
             // 
-            this.resultsBox.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.resultsBox.Location = new System.Drawing.Point(17, 22);
-            this.resultsBox.Name = "resultsBox";
-            this.resultsBox.Size = new System.Drawing.Size(96, 26);
-            this.resultsBox.TabIndex = 7;
+            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(76, 431);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(257, 214);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(424, 418);
-            this.Controls.Add(this.resultsBox);
+            this.ClientSize = new System.Drawing.Size(424, 666);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
@@ -594,6 +601,7 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -605,7 +613,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button offOnButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -638,10 +645,11 @@
         private System.Windows.Forms.Button buttonKeyCalculate;
         private System.Windows.Forms.Button buttonKeyBackspace;
         private System.Windows.Forms.Button buttonKeyClearAll;
-        private System.Windows.Forms.Button buttonKeyClearThis;
+        private System.Windows.Forms.Button buttonKeyClearEntry;
         private System.Windows.Forms.Button buttonKeyOpenBracket;
         private System.Windows.Forms.Button buttonKeyClosedBracket;
-        private System.Windows.Forms.Label resultsBox;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
