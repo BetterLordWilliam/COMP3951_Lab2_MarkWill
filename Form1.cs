@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
+///
+/// Lab 2, Will Otterbein, Mark P.
+/// Date, January 19th 2025
+/// Revision, 1
+///
 namespace COMP3951_Lab2_MarkWill
 {
     public partial class Form1 : Form

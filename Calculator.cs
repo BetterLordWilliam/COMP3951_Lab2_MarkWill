@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
+///
+/// Lab 2, Will Otterbein, Mark P.
+/// Date, January 19th 2025
+/// Revision, 1
+///
 namespace COMP3951_Lab2_MarkWill
 {
     /// <summary>
