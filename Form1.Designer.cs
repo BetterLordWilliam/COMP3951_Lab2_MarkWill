@@ -306,7 +306,7 @@
             this.buttonKeyMemAdd.TabIndex = 4;
             this.buttonKeyMemAdd.Text = "M+";
             this.buttonKeyMemAdd.UseVisualStyleBackColor = false;
-            this.buttonKeyMemAdd.Click += new System.EventHandler(this.buttonKeyMemAdd_Click);
+            this.buttonKeyMemAdd.Click += new System.EventHandler(this.buttonMemoryOperation_Click);
             // 
             // buttonKeyMemStore
             // 
@@ -319,7 +319,7 @@
             this.buttonKeyMemStore.TabIndex = 3;
             this.buttonKeyMemStore.Text = "MS";
             this.buttonKeyMemStore.UseVisualStyleBackColor = false;
-            this.buttonKeyMemStore.Click += new System.EventHandler(this.buttonKeyMemStore_Click);
+            this.buttonKeyMemStore.Click += new System.EventHandler(this.buttonMemoryOperation_Click);
             // 
             // buttonKeyMemRecall
             // 
@@ -332,7 +332,7 @@
             this.buttonKeyMemRecall.TabIndex = 2;
             this.buttonKeyMemRecall.Text = "MR";
             this.buttonKeyMemRecall.UseVisualStyleBackColor = false;
-            this.buttonKeyMemRecall.Click += new System.EventHandler(this.buttonKeyMemRecall_Click);
+            this.buttonKeyMemRecall.Click += new System.EventHandler(this.buttonMemoryOperation_Click);
             // 
             // buttonKeyMemClear
             // 
@@ -345,7 +345,7 @@
             this.buttonKeyMemClear.TabIndex = 1;
             this.buttonKeyMemClear.Text = "MC";
             this.buttonKeyMemClear.UseVisualStyleBackColor = false;
-            this.buttonKeyMemClear.Click += new System.EventHandler(this.buttonKeyMemClear_Click);
+            this.buttonKeyMemClear.Click += new System.EventHandler(this.buttonMemoryOperation_Click);
             // 
             // tableLayoutPanel3
             // 

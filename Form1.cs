@@ -24,6 +24,11 @@ namespace COMP3951_Lab2_MarkWill
             this.KeyDown += new KeyEventHandler(Form1_KeyDown);
         }
 
+        /// <summary>
+        /// Handle the on off button toggle of the calculator.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void offOnButton_Click(object sender, EventArgs e)
         {
             isOn = !isOn;
@@ -50,6 +55,11 @@ namespace COMP3951_Lab2_MarkWill
             }
         }
 
+        /// <summary>
+        /// Event handler for digit buttons, appends digits to the calculation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDigit_Click(object sender, EventArgs e)
         {
             Button buttonDigit = (Button)sender;
@@ -60,10 +70,76 @@ namespace COMP3951_Lab2_MarkWill
                     textBox1.Text = textBox1.Text.Remove(0, 1);
                 }
             }
+            // If the user does not specify a different operation, it is multiplication
             InsertMultiplicationAfterBracket();
+            // Append the digit to the calculation
             this.textBox1.Text += buttonDigit.Text;
         }
 
+        /// <summary>
+        /// Event handler for calculator operations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonOperation_Click(object sender, EventArgs e)
+        {
+            Button buttonOperation = (Button)sender;
+            if (textBox1.Text.Length > 0)
+            {
+                textBox1.Text += $" {buttonOperation.Text} ";
+            }
+        }
+
+        /// <summary>
+        /// Event handler for calculator special operations keys.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonSpecialOperation_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length >= 1)
+            {
+                float res = TrySpecialOperation(((Button)sender).Text, textBox1.Text);
+                textBox1.Text = res.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Event handler for memory operations.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonMemoryOperation_Click(object sender, EventArgs e)
+        {
+            float? res = TryMemoryOperation(((Button)sender).Text, textBox1.Text);
+            
+            // No result to show
+            if (res == null)
+                return;
+            if (textBox1.Text == "0")
+            {
+                textBox1.Text = res.ToString();
+                return;
+            }
+
+            // Different cases of adding memory value to the string
+            char last = textBox1.Text[textBox1.Text.Length - 1];
+            if (!char.IsDigit(last) && textBox1.Text.Length >= 1)
+            {
+                textBox1.Text += res.ToString();
+            }
+            // Automatically insert addition if the user recalls without operator
+            else
+            {
+                textBox1.Text += $" + {res.ToString()}";
+            }
+        }
+
+        /// <summary>
+        /// Event handler for the decimal button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDecimal_Click(object sender, EventArgs e)
         {
             Button buttonDecimal = (Button)sender;
@@ -76,31 +152,45 @@ namespace COMP3951_Lab2_MarkWill
             }
         }
 
-        private void buttonPlusMinusSign_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Event handler for open bracket button click, adds multiplication as default operation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonOpenBracket_Click(object sender, EventArgs e)
         {
-            isNegativeSigned = !isNegativeSigned;
-
-            if (isNegativeSigned)
+            if (textBox1.Text.Length > 0 && (char.IsDigit(textBox1.Text.Last())))
             {
-                if (this.textBox1.Text != "0" && !this.textBox1.Text.StartsWith("-"))
-                {
-                    this.textBox1.Text = this.textBox1.Text.Insert(0, "-");
-                }
+                textBox1.Text += " * ";
             }
-            else
-            {
-                if (this.textBox1.Text.StartsWith("-"))
-                {
-                    this.textBox1.Text = this.textBox1.Text.Remove(0, 1);
-                }
-            }
+            textBox1.Text += $"{((Button)sender).Text} ";
         }
 
+        /// <summary>
+        /// Event handler for close bracket button click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonCloseBracket_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += $" {((Button)sender).Text}";
+        }
+
+        /// <summary>
+        /// Event handler for clear all input, should calculation and memory.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearAll_Click(object sender, EventArgs e)
         {
             textBox1.Text = "0";
         }
 
+        /// <summary>
+        /// Event handler for backspace button, remove last digit/operation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonBackspace_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length >= 1)
@@ -113,108 +203,11 @@ namespace COMP3951_Lab2_MarkWill
             }
         }
 
-        private void buttonOperation_Click(object sender, EventArgs e)
-        {
-            Button buttonOperation = (Button)sender;
-            if (textBox1.Text.Length > 0)
-            {
-                textBox1.Text += $" {buttonOperation.Text} ";
-            }
-        }
-
-        private void buttonOpenBracket_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length > 0 && (char.IsDigit(textBox1.Text.Last())))
-            {
-                textBox1.Text += " * ";
-            }
-            textBox1.Text += $"{((Button)sender).Text} ";
-        }
-
-        private void buttonCloseBracket_Click(object sender, EventArgs e)
-        {
-            textBox1.Text += $" {((Button)sender).Text}";
-        }
-
-        private void buttonSpecialOperation_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length >= 1)
-            {
-                try
-                {
-                    Console.WriteLine(((Button)sender).Text + " " + textBox1.Text);
-                    float res = calculator.SpecialCalculate(((Button)sender).Text, textBox1.Text);
-                    textBox1.Text = res.ToString();
-                    containsResults = true;
-                }
-                catch (ArgumentException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-        }
-
-        private void buttonKeyCalculate_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length > 0)
-            {
-                float result = calculator.Calculate(textBox1.Text);
-                textBox1.Text = result.ToString();
-                containsResults = true;
-            }
-        }
-
-        private void buttonKeyMemAdd_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length >= 1)
-            {
-                try
-                {
-                    // Evaluate expression
-                    float res = calculator.Calculate(textBox1.Text);
-                    // Store in memory
-                    calculator.MemoryAddStore(res);
-                    textBox1.Text = res.ToString();
-                    containsResults = true;
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void buttonKeyMemStore_Click(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length >= 1)
-            {
-                try
-                {
-                    // Evaluate expression
-                    float res = calculator.Calculate(textBox1.Text);
-                    // Store in memory
-                    calculator.MemoryStore = res;
-                    textBox1.Text = res.ToString();
-                    containsResults = true;
-                }
-                catch
-                {
-
-                }
-            }
-        }
-
-        private void buttonKeyMemRecall_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            textBox1.Text += calculator.MemoryStore.ToString();
-        }
-
-        private void buttonKeyMemClear_Click(object sender, EventArgs e)
-        {
-            calculator.MemoryStore = 0;
-        }
-
+        /// <summary>
+        /// Event handler for button clear entry click.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonKeyClearEntry_Click(object sender, EventArgs e)
         {
             if (textBox1.Text.Length > 0)
@@ -228,6 +221,87 @@ namespace COMP3951_Lab2_MarkWill
                 {
                     textBox1.Text = "0";
                 }
+            }
+        }
+
+        /// <summary>
+        /// Event handler for equals button, initate calculation.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonKeyCalculate_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+            {
+                float result = TryCalculation(textBox1.Text);
+                textBox1.Text = result.ToString();
+                containsResults = true;
+            }
+        }
+
+        /// <summary>
+        /// Helper method, checks if ')' was last input and adds multiplication operation as default.
+        /// </summary>
+        private void InsertMultiplicationAfterBracket()
+        {
+            if (textBox1.Text.Length > 0 && textBox1.Text.Last() == ')')
+            {
+                textBox1.Text += " * ";
+            }
+        }
+
+        /// <summary>
+        /// Error handling for memory operations.
+        /// </summary>
+        /// <param name="memExpr"></param>
+        /// <param name="calculationLiteral"></param>
+        /// <returns></returns>
+        private float? TryMemoryOperation(string memExpr, string calculationLiteral)
+        {
+            try
+            {
+                return calculator.MemoryOperation(memExpr, calculationLiteral);
+            }
+            catch (UnknownOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Error handling for special calculations.
+        /// </summary>
+        /// <param name="calculationLiteral"></param>
+        /// <returns></returns>
+        private float TrySpecialOperation(string specialExpr, string calculationLiteral)
+        {
+            try
+            {
+                return calculator.SpecialCalculate(specialExpr, calculationLiteral);
+            }
+            catch (UnknownOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// Error handling for calculations.
+        /// </summary>
+        /// <param name="calculationLiteral"></param>
+        /// <returns></returns>
+        private float TryCalculation(string calculationLiteral)
+        {
+            try
+            {
+                return calculator.Calculate(calculationLiteral);
+            }
+            catch (CalculatorException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
             }
         }
 
@@ -311,15 +385,6 @@ namespace COMP3951_Lab2_MarkWill
                         buttonClearAll_Click(buttonKeyClearAll, e);
                         break;
                 }
-            }
-        }
-
-
-        private void InsertMultiplicationAfterBracket()
-        {
-            if (textBox1.Text.Length > 0 && textBox1.Text.Last() == ')')
-            {
-                textBox1.Text += " * ";
             }
         }
     }
