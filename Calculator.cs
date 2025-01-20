@@ -151,14 +151,12 @@ namespace COMP3951_Lab2_MarkWill
             {
                 // Numbers go directly to the output
                 if (float.TryParse(token, out float value))
-                {
                     output += $"{value} ";
-                }
                 // Ensure operator order of precedence
                 else if (CalculatorOperations.ContainsKey(token))
                 {
                     // While there is an operator with higher precedence at the top of the stack
-                    while (operators.Count() > 0 
+                    while (operators.Count() > 0
                         && (operators.Peek() != "(" && operators.Peek() != ")")
                         && (operatorPrecedence[operators.Peek()] > operatorPrecedence[token]))
                     {
@@ -169,7 +167,8 @@ namespace COMP3951_Lab2_MarkWill
                 }
                 // Ensure correct count of parenthesis
                 // Ensure order of operations with parenthesis
-                else if (token == "(") operators.Push(token);
+                else if (token == "(")
+                    operators.Push(token);
                 else if (token == ")")
                 {
                     // Validate correct presence of parenthesis
@@ -179,15 +178,14 @@ namespace COMP3951_Lab2_MarkWill
                             throw new CalculatorException("Invalid expression, parenthesis mismatch.");
                         output += $"{operators.Pop()} ";
                     }
-                    if (operators.Count() > 0 && operators.Peek() == "(") operators.Pop();
+                    if (operators.Count() > 0 && operators.Peek() == "(")
+                        operators.Pop();
                 }
             }
 
             // Add remaining operators to the output string
             foreach (string opp in operators)
-            {
                 output += $"{opp} ";
-            }
 
             return output;
         }
@@ -212,9 +210,7 @@ namespace COMP3951_Lab2_MarkWill
                 {
                     // Token is a number
                     if (float.TryParse(token, out float value))
-                    {
                         stack.Push(value);
-                    }
                     // If this is an expression string compute with the two values on the stack
                     if (CalculatorOperations.ContainsKey(token))
                     {
@@ -228,7 +224,7 @@ namespace COMP3951_Lab2_MarkWill
             }
             catch (Exception)
             {
-                throw new CalculatorException("Bad expression");
+                throw new CalculatorException("Bad expression.");
             }
         }
 
