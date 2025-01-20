@@ -158,15 +158,18 @@ namespace COMP3951_Lab2_MarkWill
         /// <param name="e"></param>
         private void buttonOpenBracket_Click(object sender, EventArgs e)
         {
+            // Effectively empty, prevent auto multiplication
             if (textBox1.Text == "0")
             {
                 textBox1.Text = $"{((Button)sender).Text} ";
                 return;
             }
+            // Automatically multiple if there is a digit before the parenthesis
             if (textBox1.Text.Length > 0 && (char.IsDigit(textBox1.Text.Last())))
             {
                 textBox1.Text += " * ";
             }
+            // Just add parenthesis
             textBox1.Text += $"{((Button)sender).Text} ";
         }
 
