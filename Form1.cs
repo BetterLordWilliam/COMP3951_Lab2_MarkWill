@@ -159,6 +159,11 @@ namespace COMP3951_Lab2_MarkWill
         /// <param name="e"></param>
         private void buttonOpenBracket_Click(object sender, EventArgs e)
         {
+            if (textBox1.Text == "0")
+            {
+                textBox1.Text = $"{((Button)sender).Text} ";
+                return;
+            }
             if (textBox1.Text.Length > 0 && (char.IsDigit(textBox1.Text.Last())))
             {
                 textBox1.Text += " * ";
